@@ -122,7 +122,7 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator PlayerHeal()
 	{
-		playerUnit.Heal(5);
+		playerUnit.Heal(playerUnit.maxHP/5);
 
 		playerHUD.SetHP(playerUnit.currentHP);
 		dialogueText.text = "You feel renewed strength!";
@@ -150,12 +150,10 @@ public class BattleSystem : MonoBehaviour
 	}
     private void CompleteLevel()
     {
-
-        
         SceneManager.LoadScene(sceneName);
     }
     private void YouLost()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(sceneName);
     }
 }
