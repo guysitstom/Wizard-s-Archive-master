@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Orc
-  unitLevel: 2
-  damage: 5
-  maxHP: 20
-  currentHP: 20
+  unitLevel: 10
+  damage: 15
+  maxHP: 30
+  currentHP: 30
 --- !u!1 &5492376629917588543
 GameObject:
   m_ObjectHideFlags: 0

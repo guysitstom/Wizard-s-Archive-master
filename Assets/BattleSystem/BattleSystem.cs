@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
@@ -23,6 +24,11 @@ public class BattleSystem : MonoBehaviour
 	public BattleHUD enemyHUD;
 
 	public BattleState state;
+
+    public string sceneName;
+    public bool isNextScene = false;
+
+    [SerializeField] public SceneInfo sceneInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -99,10 +105,14 @@ public class BattleSystem : MonoBehaviour
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
-		} else if (state == BattleState.LOST)
+            sceneInfo.isNextScene = isNextScene;
+            Invoke("CompleteLevel", 2f);
+
+        } else if (state == BattleState.LOST)
 		{
 			dialogueText.text = "You were defeated.";
-		}
+            Invoke("YouLost", 2f);
+        }
 	}
 
 	void PlayerTurn()
@@ -138,5 +148,14 @@ public class BattleSystem : MonoBehaviour
 
 		StartCoroutine(PlayerHeal());
 	}
+    private void CompleteLevel()
+    {
 
+        
+        SceneManager.LoadScene(sceneName);
+    }
+    private void YouLost()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }

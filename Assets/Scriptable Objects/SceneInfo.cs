@@ -4,5 +4,10 @@ using UnityEngine;
 public class SceneInfo : ScriptableObject
 {
     public bool isNextScene = true;
+
+    void OnEnable()
+    {
+        isNextScene= true;
+    }
 }
 
